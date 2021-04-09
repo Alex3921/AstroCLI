@@ -2,4 +2,5 @@
 
 require_relative '../config/environment.rb'
 
-API.get_data
+CLI.new.start
+binding.pry
