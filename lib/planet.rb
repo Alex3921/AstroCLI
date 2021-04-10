@@ -10,13 +10,13 @@ class Planet
     #               - measured in units of masses of the Earth
     # mpl_disc      - year the planet was discovered
 
-    # we use mass assignment for every new instance that we create
+    
 
     def initialize(attributes)
+        # we use mass assignment for every new instance that we create
+
         attributes.each do |key, value|
-            if self.respond_to?("#{key}=")
-                self.send(("#{key}="), value)
-            end
+            self.send(("#{key}="), value) if self.respond_to?("#{key}=")
         end
         save
     end
@@ -26,9 +26,12 @@ class Planet
     end
 
     def save
-        @@all << self
+        # we save the object only if it has values for each attribute
+
+        if self.mpl_name != nil && self.mpl_hostname != nil && self.mpl_disc != nil && self.mpl_trandur != nil && self.mpl_masse != nil
+            @@all << self
+        end
+
     end
 
-    # obj.mpl_name != nil && obj.mpl_hostname != nil && obj.mpl_disc != nil 
-    # && obj.mpl_trandur != nil && obj.mpl_masse != nil
 end

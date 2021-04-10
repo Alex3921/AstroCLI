@@ -5,4 +5,11 @@ class API
         obj_list = JSON.parse(response)
     end
 
+    def self.create_objects
+        API.get_data.each do |obj|
+            Planet.new(obj)
+            Star.new(obj)
+        end
+    end
+
 end

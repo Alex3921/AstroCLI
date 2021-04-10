@@ -13,10 +13,9 @@ class Star
     # while also making sure that we get only the needed attributes 
 
     def initialize(attributes)
+        # we use mass assignment for every new instance that we create
         attributes.each do |key, value|
-            if self.respond_to?("#{key}=")
-                self.send(("#{key}="), value)
-            end
+            self.send(("#{key}="), value) if self.respond_to?("#{key}=")
         end
         save
     end
@@ -26,10 +25,9 @@ class Star
     end
 
     def save
-        @@all << self
+        if self.hd_name != nil && self.mst_age != nil && self.mst_mass != nil && self.mpl_pnum != nil
+            @@all << self 
+        end
     end
-
-    # obj.hd_name != nil && obj.mst_age != nil && obj.mst_mass != nil 
-    # && obj.mpl_pnum != nil
 
 end
