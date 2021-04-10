@@ -51,7 +51,7 @@ class CLI
     end
 
     def planet_earth_like_orbit
-        Planet.all.sort_by{|obj| (1-obj.mpl_trandur).abs}[0..4]
+        Planet.all.sort_by{|obj| (1-obj.mpl_orbper).abs}[0..4]
     end
 
     def planet_find_by_name(planet_name)
@@ -60,6 +60,15 @@ class CLI
 
     def planet_random
         Planet.all.sample
+    end
+
+    def planet_details(planet)
+        puts "Name: #{planet.mpl_name}"
+        puts "Host star: #{planet.mpl_hostname}"
+        puts "Discovered: #{planet.mpl_disc}"
+        puts "Mass(Earth mass unit): #{planet.mpl_masse}"
+        puts "Orbital period(days): #{planet.mpl_orbper}"
+        user_input
     end
 
     def star_by_mass
@@ -84,6 +93,13 @@ class CLI
 
     def star_planets
         Star.all.sort_by{|obj| -obj.mpl_pnum}[0..4]
+    end
+
+    def star_details(star)
+        puts "Name: #{star.hd_name}"
+        puts "Age: #{star.mst_age}"
+        puts "Mass(Sun mass unit): #{star.mst_mass}"
+        puts "Planets in the solar system: #{star.mpl_pnum}"
     end
 
     def menu

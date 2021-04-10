@@ -1,11 +1,11 @@
 class Planet
-    attr_accessor :mpl_name, :mpl_hostname, :mpl_disc, :mpl_trandur, :mpl_masse
+    attr_accessor :mpl_name, :mpl_hostname, :mpl_disc, :mpl_orbper, :mpl_masse
     
     @@all = []
 
     # mpl_name      - planet name
     # mpl_hostname  - host star name
-    # mpl_trandur   - orbital period(days)
+    # mpl_orbper   - orbital period(days)
     # mpl_masse     - planet mass. Amount of matter contained in the planet, 
     #               - measured in units of masses of the Earth
     # mpl_disc      - year the planet was discovered
@@ -28,7 +28,7 @@ class Planet
     def save
         # we save the object only if it has values for each attribute
 
-        if self.mpl_name != nil && self.mpl_hostname != nil && self.mpl_disc != nil && self.mpl_trandur != nil && self.mpl_masse != nil
+        if self.mpl_name != nil && self.mpl_hostname != nil && self.mpl_disc != nil && self.mpl_orbper != nil && self.mpl_masse != nil
             @@all << self
         end
 
