@@ -51,7 +51,7 @@ class CLI
     end
 
     def planet_earth_like_orbit
-        Planet.all.sort_by{|obj| (1-obj.mpl_orbper).abs}[0..4]
+        Planet.all.sort_by{|obj| (365-obj.mpl_orbper).abs}[0..4]
     end
 
     def planet_find_by_name(planet_name)
@@ -60,6 +60,13 @@ class CLI
 
     def planet_random
         Planet.all.sample
+    end
+
+    def planet_menu
+        puts "1. See 5 most recent planets discovered."
+        puts "2. Top 5 planets with earth-like mass."
+        puts "3. Top 5 planets with earth-like orbit arround the host star."
+        puts "4. Discover and learn about a planet."
     end
 
     def planet_details(planet)
@@ -102,10 +109,15 @@ class CLI
         puts "Planets in the solar system: #{star.mpl_pnum}"
     end
 
-    def menu
+    def star_menu
+
+    end
+
+    def main_menu
+        
         selection = user_input
 
-        
+        # case selection
         if selection == "exit" || selection == "'exit'"
             # Give the user a goodbye message and end the program
             goodbye

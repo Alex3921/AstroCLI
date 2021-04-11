@@ -5,7 +5,7 @@ class Planet
 
     # mpl_name      - planet name
     # mpl_hostname  - host star name
-    # mpl_orbper   - orbital period(days)
+    # mpl_orbper    - time the planet takes to make a complete orbit around the host star or system
     # mpl_masse     - planet mass. Amount of matter contained in the planet, 
     #               - measured in units of masses of the Earth
     # mpl_disc      - year the planet was discovered
