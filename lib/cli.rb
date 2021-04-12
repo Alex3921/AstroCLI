@@ -79,17 +79,28 @@ class CLI
         menu(i)
     end
 
-    def planet_details(planet)
+    def planet_details(i = "planet_details", planet)
+        puts "----------------------"
         puts "Name: #{planet.mpl_name}"
         puts "Host star: #{planet.mpl_hostname}"
         puts "Discovered: #{planet.mpl_disc}"
         puts "Mass(Earth mass unit): #{planet.mpl_masse}"
         puts "Orbital period(days): #{planet.mpl_orbper}"
-        
+        puts "----------------------"
+        next_move(i)
     end
     
     def planet_printer(results)
         results.each.with_index(1){|obj, idx| puts "#{idx}. #{obj.mpl_name}" }
+    end
+
+    def next_move(i = "")
+        puts ""
+        puts "What do you wanna do next? Type your choice .."
+        puts "      -> go back"
+        puts "      -> main menu"
+        puts "      -> exit"
+        menu(i)
     end
 
     def star_by_mass
@@ -135,11 +146,14 @@ class CLI
         results.each.with_index(1){|obj, idx| puts "#{idx}. #{obj.hd_name}"}
     end
 
-    def star_details(star)
+    def star_details(i = "star_details", star)
+        puts "----------------------"
         puts "Name: #{star.hd_name}"
         puts "Age: #{star.mst_age}"
         puts "Mass(Sun mass unit): #{star.mst_mass}"
         puts "Planets in the solar system: #{star.mpl_pnum}"
+        puts "----------------------"
+        next_move(i)
     end
 
     def main_menu(i = "main_menu")
@@ -151,7 +165,7 @@ class CLI
     def menu(method_identifier = "")
         
         selection = user_input
-
+        # binding.pry
         case 
         when method_identifier == "main_menu" && selection == "1"
             planet_menu
@@ -167,6 +181,8 @@ class CLI
             planet_random
         when method_identifier == "planet_menu" && selection == "5"
             planet_find_by_name
+        when method_identifier == "planet_details" && selection.downcase.split.join("") == "goback"
+            planet_menu
         when method_identifier == "star_menu" && selection == "1"
             star_by_mass
         when method_identifier == "star_menu" && selection == "2"
@@ -177,7 +193,11 @@ class CLI
             star_random
         when method_identifier == "star_menu" && selection == "5"
             star_find_by_name
-        when selection == "exit"
+        when method_identifier == "star_details" && selection.downcase.split.join("") == "goback"
+            star_menu
+        when selection.downcase.split.join("") == "mainmenu"
+            main_menu
+        when selection.downcase == "exit"
             goodbye
         else
             invalid
