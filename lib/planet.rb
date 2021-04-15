@@ -34,4 +34,24 @@ class Planet
 
     end
 
+    def self.remove_duplicates
+        all.uniq!{|obj| obj.mpl_name}
+    end
+
+    def self.sorted_discovery
+        all.sort_by{ |obj| -obj.mpl_disc}
+    end
+
+    def self.sorted_mass
+        all.sort_by{|obj| (1-obj.mpl_masse).abs}
+    end
+
+    def self.sorted_orbit_duration
+        all.sort_by{|obj| (365-obj.mpl_orbper).abs}
+    end
+
+    def self.find_by_name(name)
+        all.find{|obj| obj.mpl_name.downcase == name.downcase}
+    end
+
 end

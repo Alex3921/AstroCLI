@@ -14,6 +14,7 @@ class Star
 
     def initialize(attributes)
         # we use mass assignment for every new instance that we create
+
         attributes.each do |key, value|
             self.send(("#{key}="), value) if self.respond_to?("#{key}=")
         end
@@ -28,6 +29,26 @@ class Star
         if self.hd_name != nil && self.mst_age != nil && self.mst_mass != nil && self.mpl_pnum != nil
             @@all << self 
         end
+    end
+
+    def self.remove_duplicates
+        all.uniq!{|obj| obj.hd_name}
+    end
+
+    def self.sorted_mass
+        all.sort_by{|obj| -obj.mst_mass}
+    end
+
+    def self.sorted_age
+        all.sort_by{|obj| -obj.mst_age}
+    end
+
+    def self.find_by_name(name)
+        all.find{|obj| obj.hd_name.downcase == name.downcase}
+    end
+
+    def self.planets_in_orbit 
+        all.sort_by{|obj| -obj.mpl_pnum}
     end
 
 end
