@@ -2,4 +2,5 @@
 
 require_relative '../config/environment.rb'
 
-CLI.new.start
+new_instance = CLI.new
+new_instance.start
