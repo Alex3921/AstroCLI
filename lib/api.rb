@@ -10,6 +10,8 @@ class API
             Planet.new(obj)
             Star.new(obj)
         end
+        Planet.remove_duplicates
+        Star.remove_duplicates
     end
 
 end

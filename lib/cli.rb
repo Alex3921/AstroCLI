@@ -1,44 +1,45 @@
 class CLI 
 
     def start
+        welcome
+        API.create_objects
+        main_menu
+    end
+
+    def user_input
+        gets.strip
+    end
+
+    def welcome
         puts ""
         puts "-> Welcome to your first Astronomy class!"
         puts "-> What is your name?"
         greeting(user_input)
         sleep(1)
         puts "-> Now, let's learn some interesting facts about stars and planets."
-        sleep(1)
+        sleep(2)
         puts ""
         puts "                                  ###                                  "
         puts "-> To navigate through the menu please type in the number that corresponds to your desired choice."
-        puts "-> To end the session at any time please type 'exit'."
+        puts "-> To end the session at any time please type EXIT."
         puts "                                  ###                                  "
-        API.create_objects
-        Planet.remove_duplicates
-        Star.remove_duplicates
-        main_menu
     end
 
-    # obtain user input
-    def user_input
-        gets.strip
-    end
-
-    # greet the user by name
     def greeting(name)
+        puts ""
         puts "-> #{name}, it's great to have you with us!"
+        puts ""
     end
 
-    # exits the app and puts out a statement
     def goodbye
         begin
             exit
         rescue SystemExit
+            puts ""
             puts "-> Thanks for stopping by. See you next time!"
         end 
     end
 
-    # handles an invalid input
     def invalid
         puts "-> Oops! That doesn't seem right, try again!"
     end
@@ -62,11 +63,16 @@ class CLI
     end
 
     def planet_find_by_name
+        puts ""
         puts "-> Please type the planet name you want to learn more about."
+        puts ""
         selection = user_input
         results = Planet.find_by_name(selection)
 
-        if results
+        case 
+        when selection.downcase == "exit"
+            goodbye
+        when results != nil
             planet_details(results)
         else
             invalid
@@ -86,6 +92,7 @@ class CLI
         puts "3. Top 5 planets with earth-like orbit arround the host star"
         puts "4. Discover and learn! We'll choosed the planet"
         puts "5. Lookup planets by name"
+        puts ""
         select_planet_menu
     end
 
@@ -98,6 +105,7 @@ class CLI
         puts "Mass(Earth mass unit): #{planet.mpl_masse.round(3)}"
         puts "Orbital period(days): #{planet.mpl_orbper.round(3)}"
         puts "----------------------"
+        puts ""
         next_move(planet)
     end
     
@@ -106,6 +114,7 @@ class CLI
         puts "Enter a number for the planet you want to learn more about:"
         puts ""
         results.each.with_index(1){|obj, idx| puts "#{idx}. #{obj.mpl_name}" }
+        puts ""
     end
 
     def select_planet_menu
@@ -134,11 +143,11 @@ class CLI
     end
 
     def next_move(obj)
-        puts ""
         puts "What do you wanna do next? Type your choice .."
         puts "      -> back"
         puts "      -> main menu"
         puts "      -> exit"
+        puts ""
         select_next_move(obj)
     end
 
@@ -157,10 +166,14 @@ class CLI
     def star_find_by_name
         puts ""
         puts "-> Please type the star name you want to learn more about."
+        puts ""
         selection = user_input
         results = Star.find_by_name(selection)
 
-        if results
+        case 
+        when selection.downcase == "exit"
+            goodbye
+        when results != nil
             star_details(results)
         else
             invalid
@@ -186,6 +199,7 @@ class CLI
         puts "3. Top 5 stars with the most planets orbiting arround them"
         puts "4. Discover and learn! We'll choosed the star"
         puts "5. Lookup star"
+        puts ""
         select_star_menu
     end
 
@@ -194,6 +208,7 @@ class CLI
         puts "Enter a number for the star you want to learn more about:"
         puts ""
         results.each.with_index(1){|obj, idx| puts "#{idx}. #{obj.hd_name}"}
+        puts ""
     end
 
     def star_details(star)
@@ -204,6 +219,7 @@ class CLI
         puts "Mass(Sun mass unit): #{star.mst_mass.round(3)}"
         puts "Planets in the solar system: #{star.mpl_pnum}"
         puts "----------------------"
+        puts ""
         next_move(star)
     end
 
@@ -211,6 +227,7 @@ class CLI
         puts ""
         puts "1. Learn about planets"
         puts "2. Learn about stars"
+        puts ""
         select_main_menu
     end
 
