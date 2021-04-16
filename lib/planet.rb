@@ -13,8 +13,6 @@ class Planet
     
 
     def initialize(attributes)
-        # we use mass assignment for every new instance that we create
-
         attributes.each do |key, value|
             self.send(("#{key}="), value) if self.respond_to?("#{key}=")
         end

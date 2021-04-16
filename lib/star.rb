@@ -13,8 +13,6 @@ class Star
     # while also making sure that we get only the needed attributes 
 
     def initialize(attributes)
-        # we use mass assignment for every new instance that we create
-
         attributes.each do |key, value|
             self.send(("#{key}="), value) if self.respond_to?("#{key}=")
         end
