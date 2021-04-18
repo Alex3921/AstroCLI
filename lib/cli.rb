@@ -69,11 +69,10 @@ class CLI
         selection = user_input
         results = Planet.find_by_name(selection)
 
-        case 
-        when selection.downcase == "exit"
-            goodbye
-        when results != nil
+        if results != nil
             planet_details(results)
+        elsif selection.downcase == "exit"
+            goodbye
         else
             invalid
             planet_find_by_name
@@ -119,22 +118,22 @@ class CLI
 
     def select_planet_menu
 
-        selection = user_input
+        selection = user_input.downcase
 
-        case
-        when selection == "1"
+        case selection
+        when "1"
             planet_recent_discoveries
-        when selection == "2"
+        when "2"
             planet_earth_like_mass
-        when selection == "3"
+        when "3"
             planet_earth_like_orbit
-        when selection == "4"
+        when "4"
             planet_random
-        when selection == "5"
+        when "5"
             planet_find_by_name
-        when selection.downcase == "back"
+        when "back"
             main_menu
-        when selection.downcase == "exit"
+        when "exit"
             goodbye
         else
             invalid
@@ -144,9 +143,9 @@ class CLI
 
     def next_move(obj)
         puts "What do you wanna do next? Type your choice .."
-        puts "      -> back"
-        puts "      -> main menu"
-        puts "      -> exit"
+        puts "-> back".center(20)
+        puts "-> main menu".center(24)
+        puts "-> exit".center(20)
         puts ""
         select_next_move(obj)
     end
@@ -171,10 +170,10 @@ class CLI
         results = Star.find_by_name(selection)
 
         case 
-        when selection.downcase == "exit"
-            goodbye
         when results != nil
             star_details(results)
+        when selection.downcase == "exit"
+            goodbye
         else
             invalid
             star_find_by_name
@@ -233,14 +232,14 @@ class CLI
 
     def select_main_menu
 
-        selection = user_input
+        selection = user_input.downcase
 
-        case 
-        when selection == "1"
+        case selection
+        when "1"
             planet_menu
-        when selection == "2"
+        when "2"
             star_menu
-        when selection.downcase == "exit"
+        when "exit"
             goodbye
         else
             invalid
@@ -251,22 +250,22 @@ class CLI
 
     def select_star_menu
 
-        selection = user_input
+        selection = user_input.downcase
 
-        case
-        when selection == "1"
+        case selection
+        when "1"
             star_mass
-        when selection == "2"
+        when "2"
             star_oldest
-        when selection == "3"
+        when "3"
             star_planets_in_orbit
-        when selection == "4"
+        when "4"
             star_random
-        when selection == "5"
+        when "5"
             star_find_by_name
-        when selection.downcase == "back"
+        when "back"
             main_menu
-        when selection.downcase == "exit"
+        when "exit"
             goodbye
         else
             invalid
@@ -277,16 +276,16 @@ class CLI
 
     def select_next_move(obj)
 
-        selection = user_input
+        selection = user_input.downcase.split.join("")
 
-        case
-        when selection.downcase.split.join("") == "mainmenu"
+        case 
+        when selection == "mainmenu"
             main_menu
-        when selection.downcase == "back" && obj.class == Planet
+        when selection == "back" && obj.class == Planet
             planet_menu
-        when selection.downcase == "back" && obj.class == Star
+        when selection == "back" && obj.class == Star
             star_menu
-        when selection.downcase == "exit"
+        when selection == "exit"
             goodbye
         else
             invalid
@@ -303,7 +302,7 @@ class CLI
             planet_details(obj[selection.to_i-1])
         when (1..5).include?(selection.to_i) && obj[0].class == Star
             star_details(obj[selection.to_i-1])
-        when selection == "exit"
+        when selection.downcase == "exit"
             goodbye
         else
             invalid
