@@ -89,7 +89,7 @@ class CLI
         puts "1. See 5 most recent planets discovered"
         puts "2. Top 5 planets with earth-like mass"
         puts "3. Top 5 planets with earth-like orbit arround the host star"
-        puts "4. Discover and learn! We'll choosed the planet"
+        puts "4. Discover and learn! We'll choose the planet"
         puts "5. Lookup planets by name"
         puts ""
         select_planet_menu
@@ -196,10 +196,35 @@ class CLI
         puts "1. Top 5 heaviest stars"
         puts "2. Top 5 oldest stars"
         puts "3. Top 5 stars with the most planets orbiting arround them"
-        puts "4. Discover and learn! We'll choosed the star"
+        puts "4. Discover and learn! We'll choose the star"
         puts "5. Lookup star"
         puts ""
         select_star_menu
+    end
+
+    def select_star_menu
+
+        selection = user_input.downcase
+
+        case selection
+        when "1"
+            star_mass
+        when "2"
+            star_oldest
+        when "3"
+            star_planets_in_orbit
+        when "4"
+            star_random
+        when "5"
+            star_find_by_name
+        when "back"
+            main_menu
+        when "exit"
+            goodbye
+        else
+            invalid
+            select_star_menu
+        end
     end
 
     def star_printer(results)
@@ -245,33 +270,6 @@ class CLI
             invalid
             select_main_menu
         end
-
-    end
-
-    def select_star_menu
-
-        selection = user_input.downcase
-
-        case selection
-        when "1"
-            star_mass
-        when "2"
-            star_oldest
-        when "3"
-            star_planets_in_orbit
-        when "4"
-            star_random
-        when "5"
-            star_find_by_name
-        when "back"
-            main_menu
-        when "exit"
-            goodbye
-        else
-            invalid
-            select_star_menu
-        end
-
     end
 
     def select_next_move(obj)

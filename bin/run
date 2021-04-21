@@ -1,4 +1,4 @@
-#!/users/bin/env ruby
+#!/users/bin/env ruby -w
 
 require_relative '../config/environment.rb'
 
