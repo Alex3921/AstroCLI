@@ -1,4 +1,4 @@
-# stars_planets_cli
+# AstroCLI
 
 Welcome to my very first CLI app! It is a search application that uses an API from the NASA Exoplanet Archive to access data on planets and stars.
 
