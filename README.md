@@ -6,7 +6,7 @@ Welcome to my very first CLI app! It is a search application that uses an API fr
 
 1. Clone the repository by copying the following into your terminal:
   
-    >*git clone [git@github.com:Alex3921/stars_planets_cli.git](git@github.com:Alex3921/stars_planets_cli.git)*
+    >*git clone [git@github.com:Alex3921/AstroCLI.git](git@github.com:Alex3921/AstroCLI.git)*
   
 2. Run 'bundle install' to install all necessary gems the application is dependent on. 
 
@@ -21,7 +21,7 @@ Welcome to my very first CLI app! It is a search application that uses an API fr
 Once the application starts you just need to follow the on-screen propts. Have fun!
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/Alex3921/stars_planets_cli. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Alex3921/AstroCLI. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org) code of conduct.
 
 ## License
 
